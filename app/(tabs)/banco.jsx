@@ -1,48 +1,165 @@
 import React, { useState } from 'react';
-import Home from './components/Home';
-import Operacoes from './components/Operacoes';
-import { View, StyleSheet } from 'react-native';
+import { View, Text, Pressable, TextInput, StyleSheet, Image, Alert, Modal } from 'react-native';
 
-export default function App() {
-    const [saldo, setSaldo] = useState(9.798);
+const App = () => {
+  const [number, setNumber] = useState(7320.92);
+  const [valor, setValor] = useState('');
+  const [mensagem, setMensagem] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [saldoAtual, setSaldoAtual] = useState(number);
+  const [saldoFuturo, setSaldoFuturo] = useState(0);
 
-    const sacar = (valor) => {
-        if (valor <= 0) {
-            alert('O valor do saque deve ser maior que zero.');
-            return;
-        }
+  const confirmarTransacao = () => {
+    setNumber(saldoFuturo);
+    setShowModal(false);
+  };
+  
+  const cancelarTransacao = () => {
+    setNumber(saldoAtual);
+    setShowModal(false);
+  };
 
-        if (valor > saldo) {
-            alert('Saldo insuficiente.');
-            return;
-        }
+  const mostrarModal = (tipoTransacao, novoSaldo) => {
+    setSaldoAtual(number);
+    setSaldoFuturo(novoSaldo);
+    setShowModal(true);
+  };
 
-        const nSaldo = saldo - valor;
-        const multa = nSaldo * 0.025;
-        setSaldo(nSaldo - multa);
-    };
+  const saque = () => {
+    const valorComMulta = Number(valor) * 1.025;  // Multa de 2,5%
+    const novoSaldo = Number(number) - valorComMulta;
+    mostrarModal('Saque', novoSaldo);
 
-    const depositar = (valor) => {
-        if (valor <= 0) {
-            alert('O valor do depósito deve ser maior que zero.');
-            return;
-        }
+    if (novoSaldo >= 0) {
+      setNumber(novoSaldo);
+    } 
+  };
 
-        const bonus = valor * 0.01; 
-        setSaldo(saldo + valor + bonus);
-    };
+  const deposito = () => {
+    const valorComMulta = Number(valor) * 1.01; // Bonus de 1%
+    const novoSaldo = Number(number) + valorComMulta;
+    mostrarModal('Depósito', novoSaldo);
+    setNumber(novoSaldo);
+  };
 
-    return (
-        <View style={styles.main}>
-            <Home saldo={saldo} />
-            <Operacoes saque={sacar} deposito={depositar} />
+  return (
+    <View style={styles.container}>
+      <Image
+        style={styles.logo}
+        source={require('../../assets/santander.png')}
+      />
+      <Text style={styles.saldo}>Saldo: R${number.toFixed(2)}</Text>
+      <View style={styles.alinha}>
+        <TextInput
+          id='value'
+          value={valor}
+          keyboardType='numeric'
+          style={styles.input}
+          placeholder='Digite o Valor'
+          onChangeText={setValor}
+        />
+      </View>
+      <View style={styles.options}>
+        <Pressable onPress={saque}><Text style={styles.botao}>Sacar</Text></Pressable>
+        <Pressable onPress={deposito}><Text style={styles.botao}>Depositar</Text></Pressable>
+      </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={showModal}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setShowModal(!showModal);
+        }}
+      >
+        <View style={styles.modalView}> 
+          <Text style={styles.modalText}>Confirmar Transação</Text>
+          <Text>Saldo Atual: R${saldoAtual.toFixed(2)}</Text>
+          <Text>Saldo após a transação: R${saldoFuturo.toFixed(2)}</Text>
+          <Pressable
+            style={[styles.button, styles.buttonClose]}
+            onPress={confirmarTransacao}
+          >
+            <Text style={styles.textStyle}>Confirmar</Text>
+          </Pressable>
+          <Pressable
+            style={[styles.button, styles.buttonClose]}
+            onPress={cancelarTransacao}
+          >
+            <Text style={styles.textStyle}>Cancelar</Text>
+          </Pressable>
         </View>
-    );
-}
+      </Modal>
+    </View>
+  );
+}; 
 
 const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        padding: 16,
+    container: { 
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center' 
     },
+
+    logo: {
+        width: 780,
+        height: 200,
+        marginBottom: 20
+    },
+    saldo: {
+        margin: 30
+    },
+
+    alinha: {
+        flexDirection: 'row', 
+        alignItems: 'center',
+        marginBottom: 20 
+    },
+
+    input: {
+        width: 200,
+        marginLeft: 10 
+    },
+
+    options: {
+        display: 'flex',
+        justifyContent: 'space-around'
+    },
+
+    dinheiro: {
+        width: 40,
+        height: 40
+    },
+
+    botao: {
+        backgroundColor: 'red',
+        borderRadius: 1,
+        textAlign: 'center',
+        padding: 5,
+        color: '#FFF', 
+        width: 150,
+        margin: 10,
+        borderRadius: 15,
+    },
+    modalView: {
+        position: 'absolute',
+        top: '40%',
+        left: '40%',
+        transform: ['translate(-50%, -50%)'],
+        backgroundColor: 'red',
+        padding: 20,
+        borderRadius: 5,
+        zIndex: 999,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      modalContent: {
+        width: '80%',
+        padding: 20,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 5,
+      },
 });
+
+export default App;
