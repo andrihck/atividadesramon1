@@ -3,17 +3,55 @@ import { View, Text, TextInput, Pressable, StyleSheet, SafeAreaView } from "reac
 
 const style = StyleSheet.create({
     input: {
-        width: '80%',
-        margin: 10,
-        backgroundColor: 'grey',
+        width: '100%',
+        margin: 5,
+        backgroundColor: '#799fbf',
         borderRadius: '15px',
         alignItems: 'center',
+        justifyContent: 'center',
         textAlign: 'center',
+        padding: 5
+        
+
 
     },
     container: {
-        alignItems: 'center'
-    }
+        alignItems: 'center',
+        justifyContent:'center',
+        backgroundColor:'#799fbf',
+        flex: 1
+    },
+
+    button:{
+        justifyContent: 'center',
+        margin:15,
+        alignItems:'center',
+        color:'grey',
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        backgroundColor: '#799fbf',
+        borderRadius: 15
+    },
+    titulo:{
+        fontSize: 49,
+        fontFamily: 'Times New Roman',
+        fontWeight:'760',
+
+    },
+    box:{
+        shadowOpacity: 0.30,  
+        shadowRadius: 9, 
+        padding: 50,
+        backgroundColor:'white',
+        justifyContent: 'center',
+    
+       },
+
+       botaotexto:{
+        color:'black',
+        alignItems:'center',
+        justifyContent:'center'
+       }
 
 })
 
@@ -49,36 +87,37 @@ export default SinUp = () => {
 
 
 return (
-    <SafeAreaView>
-        <View>
-            <Text>Registre-se</Text>
+    <SafeAreaView style={style.container}>
+        <View style={style.box}>
+        <View >
+            <Text style={style.titulo}>Registre-se</Text>
         </View>
-        <View>
+        <View style={style.inputView}>
             <TextInput
                 style={style.input}
                 onChangeText={(text) => setEmail(text)}
                 value={email}
-                placeholder="Digite seu email"
+                placeholder="Digite seu email zika"
             />
             <TextInput
                 style={style.input}
                 onChangeText={(text) => setNome(text)}
                 value={nome}
-                placeholder="Seu nome"
+                placeholder="Seu nome queride"
             /><TextInput
                 style={style.input}
                 onChangeText={(text) => setSenha(text)}
                 value={senha}
-                placeholder="Sua senha"
+                placeholder="Sua senha segura menine"
                 secureTextEntry={true}
             />
 
-            <View>
+            <View style={style.button} >
                 <Pressable onPress={registrarUsuario}>
-                    <Text>Cadastrar</Text>
+                    <Text style={style.botaotexto}>Cadastrar</Text>
                 </Pressable>
             </View>
-
+</View>
         </View>
     </SafeAreaView>
 
