@@ -12,8 +12,6 @@ const style = StyleSheet.create({
         textAlign: 'center',
         padding: 5
         
-
-
     },
     container: {
         alignItems: 'center',
@@ -85,7 +83,6 @@ export default SinUp = () => {
     }
 }
 
-
 return (
     <SafeAreaView style={style.container}>
         <View style={style.box}>
@@ -103,12 +100,12 @@ return (
                 style={style.input}
                 onChangeText={(text) => setNome(text)}
                 value={nome}
-                placeholder="Seu nome queride"
+                placeholder="Seu nome animal"
             /><TextInput
                 style={style.input}
                 onChangeText={(text) => setSenha(text)}
                 value={senha}
-                placeholder="Sua senha segura menine"
+                placeholder="Sua senha segura"
                 secureTextEntry={true}
             />
 
