@@ -6,9 +6,37 @@ const styles = StyleSheet.create({
     container: {
         justifyContent:'center',
         alignItems:'center',
-        flex:'1', 
-      
+        flex:'1',  
+        backgroundColor:'#FFA500',
+        
     },
+
+    box:{
+        shadowOpacity: 1.25,  
+        shadowRadius: 10,
+        borderRadius: 10, 
+        padding: 50,
+        backgroundColor:'white',
+        justifyContent: 'center',
+        
+        
+    },
+
+    texto:{
+        fontSize: 60,
+        textAlign: 'center',
+        margin: 20,
+        fontWeight:'800',
+        fontSize: 90,
+    },
+    
+    title:{
+        fontSize:20,
+    }
+    
+
+    
+    
 });
 
 export default Seletor = () => {
@@ -30,7 +58,8 @@ export default Seletor = () => {
    
    return(
         <View style = {styles.container}>
-               <Text style={styles.title}>Selecione um Pokemon</Text>
+            <View style={styles.box}>
+               <Text style={styles.title}>Selecione um Pokemon para a sua batalha :)</Text>
                <Picker
                   selectedValue={pokemon}
                   style={styles.picker}
@@ -42,6 +71,7 @@ export default Seletor = () => {
                      ))}
                </Picker>
                {pokemon? <Text>Voce selecionou {pokemon}</Text>:''}
+               </View>
         </View>
     );
 };

@@ -27,7 +27,7 @@ const style = StyleSheet.create({
         color:'grey',
         paddingHorizontal: 12,
         paddingVertical: 6,
-        backgroundColor: '#799fbf',
+        backgroundColor: 'black',
         borderRadius: 15
     },
     titulo:{
@@ -46,7 +46,7 @@ const style = StyleSheet.create({
        },
 
        botaotexto:{
-        color:'black',
+        color:'white',
         alignItems:'center',
         justifyContent:'center'
        }
