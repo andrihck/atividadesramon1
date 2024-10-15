@@ -41,6 +41,7 @@ export default function Page(){
             <Link href= "/tela">▪ Entre no Vsco</Link>
             <Link href= "/listatarefa">▪ Lista de tarefas</Link>
             <Link href= "/pokemon">▪ Escolha seu pokemon</Link>
+            <Link href= "/camera">▪ Camera</Link>
         
             </View>
     
