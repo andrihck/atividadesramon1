@@ -87,10 +87,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    permissao: {
-        textAlign: 'center',
-        marginBottom: 20,
-    },
     camera: {
         width: '100%',
         height: '100%',
@@ -100,26 +96,29 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    iconfoto: {
+        width: 40,
+        height: 40,
+        marginHorizontal: 15,
+    },
+    iconflip: {
+        width: 45,
+        height: 40,
+        marginHorizontal: 20,
+    },
+    qrcode: {
+        width: 45,
+        height: 45,
+        marginHorizontal: 20,
+    },
     botaosalvar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 20,
     },
-    iconfoto: {
-        width: 50,
-        height: 50,
-        marginHorizontal: 20,
+    permissao: {
+        textAlign: 'center',
+        marginBottom: 20,
     },
-    iconflip: {
-        width: 50,
-        height: 50,
-        marginHorizontal: 20,
-    },
-    qrcode: {
-        width: 50,
-        height: 50,
-        marginHorizontal: 20,
-    },
-    
 });
