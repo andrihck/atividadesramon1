@@ -42,6 +42,7 @@ export default function Page(){
             <Link href= "/listatarefa">▪ Lista de tarefas</Link>
             <Link href= "/pokemon">▪ Escolha seu pokemon</Link>
             <Link href= "/camera">▪ Camera</Link>
+            <Link href= "/(tabs)/memorias">▪ Memorias</Link>
         
             </View>
     
